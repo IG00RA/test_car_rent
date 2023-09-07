@@ -1,10 +1,18 @@
 import styled from 'styled-components';
 
 export const StyledButton = styled.button`
-  padding: 12px 99px;
+  height: 44px;
   border-radius: 12px;
-  background: #0b44cd;
-  color: #fff; /* Додайте колір тексту за потреби */
-  border: none; /* Видаліть рамку, якщо не потрібна */
-  /* Додайте інші стилі за потреби */
+  background: #3470ff;
+  color: #fff;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 143%;
+  transition: background 0.3s ease;
+
+  &:hover,
+  &:focus {
+    background: #0b44cd;
+  }
 `;

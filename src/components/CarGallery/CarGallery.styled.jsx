@@ -2,15 +2,35 @@ import styled from 'styled-components';
 
 export const Grid = styled.ul`
   display: grid;
-  width: 1440px;
   grid-template-columns: repeat(4, 274px);
   gap: 29px;
-  margin: 0px auto;
-  padding: 150px 128px;
+  row-gap: 50px;
   list-style: none;
+  margin: 0px auto;
+  margin-bottom: 100px;
 `;
 
 export const CarItem = styled.li`
+  position: relative;
   width: 100%;
   height: 426px;
+`;
+
+export const GridWrap = styled.div`
+  width: 1440px;
+  padding: 150px 128px;
+  margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const LoadMoreStyled = styled.button`
+  color: #3470ff;
+  font-weight: 500;
+  line-height: 150%;
+  text-decoration-line: underline;
+  &:hover,
+  &:focus {
+    color: #0b44cd;
+  }
 `;

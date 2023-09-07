@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import CarGalleryItem from '../CarGalleryItem/CarGalleryItem';
 import { selectAdverts } from '../../redux/adverts/advertsSelectors';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getAllAdverts } from '../../redux/adverts/advertsOperations';
-import { CarItem, Grid } from './CarGallery.styled';
+import { CarItem, Grid, GridWrap, LoadMoreStyled } from './CarGallery.styled';
 
 function CarGallery() {
   const dispatch = useDispatch();
@@ -11,19 +11,29 @@ function CarGallery() {
     dispatch(getAllAdverts());
   }, [dispatch]);
 
+  const [visibleCount, setVisibleCount] = useState(8);
+
   const adverts = useSelector(selectAdverts);
+
+  const handleLoadMore = () => {
+    setVisibleCount(prevVisibleCount => prevVisibleCount + 8);
+  };
   if (adverts.length !== 0) {
     return (
-      <>
-        <p>CarGallery</p>
+      <GridWrap>
         <Grid>
-          {adverts.map(item => (
+          {adverts.slice(0, visibleCount).map(item => (
             <CarItem key={item.id}>
               <CarGalleryItem data={item} />
             </CarItem>
           ))}
         </Grid>
-      </>
+        {visibleCount < adverts.length && (
+          <LoadMoreStyled type="button" onClick={handleLoadMore}>
+            Load more
+          </LoadMoreStyled>
+        )}
+      </GridWrap>
     );
   }
 }
