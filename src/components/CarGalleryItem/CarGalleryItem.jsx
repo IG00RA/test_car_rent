@@ -10,6 +10,7 @@ import {
   TitleWrap,
 } from './CarGalleryItem.styled';
 import ModalContainer from '../Modal/ModalContainer';
+import CarInfo from '../CarInfo/CarInfo';
 
 function CarGalleryItem({ data }) {
   const {
@@ -92,7 +93,7 @@ function CarGalleryItem({ data }) {
       </DataWrap>
       <MainButton width={274} text="Learn more" onClick={toggleModal} />
       <ModalContainer isOpen={modalIsOpen} onRequestClose={toggleModal}>
-        {/* Вміст вашої модалки */}
+        <CarInfo carId={id} />
       </ModalContainer>
     </>
   );
