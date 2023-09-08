@@ -6,6 +6,7 @@ export const ModalWrap = styled.div`
   border-radius: 24px;
   background: #fff;
   position: relative;
+  padding: 40px;
 `;
 
 export const StyledXSVG = styled.svg`
@@ -29,29 +30,21 @@ export const StyledXSVG = styled.svg`
   }
 `;
 export const ModalCarImg = styled.img`
-  width: 274px;
-  height: 268px;
+  width: 461px;
+  height: 248px;
   object-fit: cover;
   border-radius: 14px;
   margin-bottom: 14px;
-  background: linear-gradient(
-    180deg,
-    rgba(18, 20, 23, 0.5) 2.5%,
-    rgba(18, 20, 23, 0) 41.07%
-  );
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  background: lightgray 50%;
 `;
 
 export const ModalTitleWrap = styled.div`
-  line-height: 24px;
-  font-weight: 500;
-  display: flex;
-  justify-content: space-between;
   margin-bottom: 8px;
 `;
 
 export const ModalTitle = styled.h3`
-  font-size: 16px;
+  font-size: 18px;
+  line-height: 24px;
   font-weight: 500;
 `;
 
@@ -72,7 +65,7 @@ export const ModalDataList = styled.li`
   }
 `;
 export const ModalDataWrap = styled.div`
-  margin-bottom: 28px;
+  margin-bottom: 14px;
 `;
 
 export const ModalStyledModel = styled.span`

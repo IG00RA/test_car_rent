@@ -93,7 +93,7 @@ function CarGalleryItem({ data }) {
       </DataWrap>
       <MainButton width={274} text="Learn more" onClick={toggleModal} />
       <ModalContainer isOpen={modalIsOpen} onRequestClose={toggleModal}>
-        <CarInfo carId={id} />
+        <CarInfo id={id} city={city} country={country} altText={altText} />
       </ModalContainer>
     </>
   );
