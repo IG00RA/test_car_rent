@@ -2,7 +2,7 @@ import { useState } from 'react';
 import MainButton from '../Buttons/MainButton';
 import {
   CarImg,
-  DataList,
+  DataItem,
   DataWrap,
   StyledModel,
   StyledSVG,
@@ -74,26 +74,33 @@ function CarGalleryItem({ data }) {
       </TitleWrap>
       <DataWrap>
         <ul>
-          <DataList>{country}</DataList>
-          <DataList>{rentalCompany}</DataList>
-          <DataList>{city}</DataList>
-          {totalLength <= 30 && <DataList>Premium</DataList>}
+          <DataItem>{country}</DataItem>
+          <DataItem>{rentalCompany}</DataItem>
+          <DataItem>{city}</DataItem>
+          {totalLength <= 30 && <DataItem>Premium</DataItem>}
         </ul>
         <ul>
-          <DataList>{type}</DataList>
-          <DataList>{make}</DataList>
-          <DataList>{id}</DataList>
+          <DataItem>{type}</DataItem>
+          <DataItem>{make}</DataItem>
+          <DataItem>{id}</DataItem>
           {totalLengthSecond <= 25 &&
             (accessory.length > 14 ? (
-              <DataList>{accessory.slice(0, 14) + ''}</DataList>
+              <DataItem>{accessory.slice(0, 14) + ''}</DataItem>
             ) : (
-              <DataList>{accessory}</DataList>
+              <DataItem>{accessory}</DataItem>
             ))}
         </ul>
       </DataWrap>
       <MainButton width={274} text="Learn more" onClick={toggleModal} />
       <ModalContainer isOpen={modalIsOpen} onRequestClose={toggleModal}>
-        <CarInfo id={id} city={city} country={country} altText={altText} />
+        <CarInfo
+          modalIsOpen={modalIsOpen}
+          toggleModal={toggleModal}
+          id={id}
+          city={city}
+          country={country}
+          altText={altText}
+        />
       </ModalContainer>
     </>
   );

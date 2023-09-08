@@ -2,11 +2,12 @@ import styled from 'styled-components';
 
 export const ModalWrap = styled.div`
   width: 541px;
-  height: 752px;
+  min-height: 752px;
   border-radius: 24px;
   background: #fff;
   position: relative;
   padding: 40px;
+  /* overflow-y: auto; */
 `;
 
 export const StyledXSVG = styled.svg`
@@ -48,7 +49,7 @@ export const ModalTitle = styled.h3`
   font-weight: 500;
 `;
 
-export const ModalDataList = styled.li`
+export const ModalDataItem = styled.li`
   margin-right: 6px;
   display: inline-block;
   color: rgba(18, 20, 23, 0.5);
@@ -67,27 +68,49 @@ export const ModalDataList = styled.li`
 export const ModalDataWrap = styled.div`
   margin-bottom: 14px;
 `;
+export const ModalAccessoriesWrap = styled.div`
+  margin-bottom: 24px;
+`;
+export const ModalDataList = styled.ul`
+  margin: 0;
+`;
 
 export const ModalStyledModel = styled.span`
   color: #3470ff;
 `;
-export const StyledSVG = styled.svg`
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  cursor: pointer;
-  stroke: white;
-  stroke-opacity: 0.8;
-  stroke-width: 1.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  width: 18px;
-  height: 18px;
-  fill: none;
-  transition: stroke 0.3s ease;
-  &:hover,
-  &:focus {
-    fill: #3470ff;
-    stroke: #3470ff;
-  }
+
+export const DescriptionStyled = styled.p`
+  color: #121417;
+  font-size: 14px;
+  line-height: 143%;
+  margin-bottom: 24px;
+`;
+export const AccessoriesStyled = styled.p`
+  color: #121417;
+  font-size: 14px;
+  line-height: 143%;
+  margin-bottom: 8px;
+`;
+export const ModalConditionsList = styled.ul`
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+`;
+export const ModalConditionsItem = styled.li`
+  padding: 7px 14px;
+  border-radius: 35px;
+  background-color: #f9f9f9;
+  color: #363535;
+  font-size: 12px;
+  line-height: 150%;
+  font-family: Montserrat;
+  letter-spacing: -0.24px;
+`;
+export const SpanStyled = styled.span`
+  color: #3470ff;
+  font-family: Montserrat;
+  font-weight: 600;
+  letter-spacing: -0.24px;
 `;

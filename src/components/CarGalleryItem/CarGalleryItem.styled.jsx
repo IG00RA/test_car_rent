@@ -27,7 +27,7 @@ export const Title = styled.h3`
   font-weight: 500;
 `;
 
-export const DataList = styled.li`
+export const DataItem = styled.li`
   margin-right: 6px;
   display: inline-block;
   color: rgba(18, 20, 23, 0.5);

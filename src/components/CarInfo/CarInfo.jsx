@@ -1,18 +1,25 @@
 import { useSelector } from 'react-redux';
 import {
+  AccessoriesStyled,
+  DescriptionStyled,
+  ModalAccessoriesWrap,
   ModalCarImg,
+  ModalConditionsItem,
+  ModalConditionsList,
+  ModalDataItem,
   ModalDataList,
   ModalDataWrap,
   ModalStyledModel,
   ModalTitle,
   ModalTitleWrap,
   ModalWrap,
+  SpanStyled,
   StyledXSVG,
 } from './CarInfo.styled';
 import { selectAdvertById } from '../../redux/adverts/advertsSelectors';
 import MainButton from '../Buttons/MainButton';
 
-function CarInfo(carData) {
+function CarInfo({ modalIsOpen, toggleModal, ...carData }) {
   const { id, city, country, altText } = carData;
 
   const advert = useSelector(state => selectAdvertById(state, id));
@@ -40,7 +47,11 @@ function CarInfo(carData) {
     .map(item => item.trim());
   const formattedMileage = mileage.toLocaleString();
   const xIcon = (
-    <StyledXSVG xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <StyledXSVG
+      onClick={() => toggleModal()}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
       <path d="M18 6L6 18" />
       <path d="M6 6L18 18" />
     </StyledXSVG>
@@ -57,44 +68,48 @@ function CarInfo(carData) {
         </ModalTitle>
       </ModalTitleWrap>
       <ModalDataWrap>
-        <ul>
-          <ModalDataList>{city}</ModalDataList>
-          <ModalDataList>{country}</ModalDataList>
-          <ModalDataList>{id}</ModalDataList>
-          <ModalDataList>{year}</ModalDataList>
-          <ModalDataList>{type}</ModalDataList>
-        </ul>
-        <ul>
-          <ModalDataList>Fuel Consumption: {fuelConsumption}</ModalDataList>
-          <ModalDataList>Engine Size: {engineSize}</ModalDataList>
-        </ul>
+        <ModalDataList>
+          <ModalDataItem>{city}</ModalDataItem>
+          <ModalDataItem>{country}</ModalDataItem>
+          <ModalDataItem>{id}</ModalDataItem>
+          <ModalDataItem>{year}</ModalDataItem>
+          <ModalDataItem>{type}</ModalDataItem>
+        </ModalDataList>
+        <ModalDataList>
+          <ModalDataItem>Fuel Consumption: {fuelConsumption}</ModalDataItem>
+          <ModalDataItem>Engine Size: {engineSize}</ModalDataItem>
+        </ModalDataList>
       </ModalDataWrap>
-      <p>{description}</p>
-      <p>Accessories and functionalities:</p>
-      <ModalDataWrap>
-        <ul>
-          <ModalDataList>{accessories[0]}</ModalDataList>
-          <ModalDataList>{accessories[1]}</ModalDataList>
-          <ModalDataList>{accessories[2]}</ModalDataList>
-        </ul>
-        <ul>
-          <ModalDataList>{functionalities[0]}</ModalDataList>
-          <ModalDataList>{functionalities[1]}</ModalDataList>
-          <ModalDataList>{functionalities[2]}</ModalDataList>{' '}
-        </ul>
-      </ModalDataWrap>
-      <p>Rental Conditions: </p>
-      <ul>
-        <li>
-          {minAgeText}: {age}
-        </li>
-        <li>{conditionsArray[1]}</li>
-        <li>{conditionsArray[2]}</li>
-        <li>Mileage: {formattedMileage}</li>
-        <li>Price: {rentalPrice}</li>
-      </ul>
+      <DescriptionStyled>{description}</DescriptionStyled>
+      <AccessoriesStyled>Accessories and functionalities:</AccessoriesStyled>
+      <ModalAccessoriesWrap>
+        <ModalDataList>
+          <ModalDataItem>{accessories[0]}</ModalDataItem>
+          <ModalDataItem>{accessories[1]}</ModalDataItem>
+          <ModalDataItem>{accessories[2]}</ModalDataItem>
+        </ModalDataList>
+        <ModalDataList>
+          <ModalDataItem>{functionalities[0]}</ModalDataItem>
+          <ModalDataItem>{functionalities[1]}</ModalDataItem>
+          <ModalDataItem>{functionalities[2]}</ModalDataItem>{' '}
+        </ModalDataList>
+      </ModalAccessoriesWrap>
+      <AccessoriesStyled>Rental Conditions: </AccessoriesStyled>
+      <ModalConditionsList>
+        <ModalConditionsItem>
+          {minAgeText}: <SpanStyled>{age}</SpanStyled>
+        </ModalConditionsItem>
+        <ModalConditionsItem>{conditionsArray[1]}</ModalConditionsItem>
+        <ModalConditionsItem>{conditionsArray[2]}</ModalConditionsItem>
+        <ModalConditionsItem>
+          Mileage: <SpanStyled>{formattedMileage}</SpanStyled>
+        </ModalConditionsItem>
+        <ModalConditionsItem>
+          Price: <SpanStyled>{rentalPrice}</SpanStyled>
+        </ModalConditionsItem>
+      </ModalConditionsList>
 
-      <MainButton width={168} text="Rental car" />
+      <MainButton width={168} text="Rental car" phoneNumber="+380730000000" />
     </ModalWrap>
   );
 }
