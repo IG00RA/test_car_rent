@@ -1,9 +1,7 @@
+import FavoriteCarGallery from '../components/FavoriteCarGallery/FavoriteCarGallery';
+
 function Favorites() {
-  return (
-    <div>
-      <p>Favorites</p>
-    </div>
-  );
+  return <FavoriteCarGallery />;
 }
 
 export default Favorites;

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getAllAdverts, removeFavoriteId } from './advertsOperations';
+import { getAllAdverts } from './advertsOperations';
 
 const advertsInitialState = {
   adverts: [],
@@ -51,6 +51,5 @@ const advertsSlice = createSlice({
   },
 });
 
-export const { addFavoriteId } = advertsSlice.actions; // Експортувати дії
-
+export const { addFavoriteId, removeFavoriteId } = advertsSlice.actions;
 export const advertsReducer = advertsSlice.reducer;
