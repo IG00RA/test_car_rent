@@ -21,8 +21,9 @@ const middleware = [
 ];
 
 const advertPersistConfig = {
-  key: 'advert',
+  key: 'favorite',
   storage,
+  whitelist: ['favoriteId'],
 };
 
 export const store = configureStore({

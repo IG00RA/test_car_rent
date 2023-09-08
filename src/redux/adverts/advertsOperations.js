@@ -1,4 +1,4 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://6484488eee799e32162677a6.mockapi.io/';
@@ -14,3 +14,15 @@ export const getAllAdverts = createAsyncThunk(
     }
   }
 );
+
+export const addFavoriteId = createAction('adverts/addFavoriteId', id => {
+  return {
+    payload: id,
+  };
+});
+
+export const removeFavoriteId = createAction('adverts/removeFavoriteId', id => {
+  return {
+    payload: id,
+  };
+});
