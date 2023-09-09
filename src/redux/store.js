@@ -11,6 +11,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import { advertsReducer } from './adverts/advertsSlice';
+import { filtersReducer } from './filters/filtersSlice';
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -29,6 +30,7 @@ const advertPersistConfig = {
 export const store = configureStore({
   reducer: {
     adverts: persistReducer(advertPersistConfig, advertsReducer),
+    filters: filtersReducer,
   },
   middleware,
 });
