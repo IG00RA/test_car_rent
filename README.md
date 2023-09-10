@@ -34,7 +34,7 @@ What our customers are saying about DriveStar:
 
 Have questions or need assistance? Contact our friendly team:
 
-- Phone: [![+38 073 0000000]](tel:+380730000000)
+- Phone: [+38 073 0000000](tel:+380730000000)
 - Email: [info@drivestar.com](mailto:info@drivestar.com)
 
 Thank you for choosing DriveStar Car Rental. We look forward to serving you and
