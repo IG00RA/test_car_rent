@@ -29,7 +29,6 @@ function FilterForm({ carData }) {
     initialValues: filters,
     validationSchema,
     onSubmit: values => {
-      console.log(values);
       dispatch(setFilters(values));
     },
   });
