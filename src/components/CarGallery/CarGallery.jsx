@@ -4,7 +4,7 @@ import { selectAdverts } from '../../redux/adverts/advertsSelectors';
 import { useEffect, useState } from 'react';
 import { getAllAdverts } from '../../redux/adverts/advertsOperations';
 import { CarItem, Grid, GridWrap, LoadMoreStyled } from './CarGallery.styled';
-import FilterForm from '../Filter/FilterForm';
+import FilterForm from '../FilterForm/FilterForm';
 import { selectFilters } from '../../redux/filters/filtersSelectors';
 
 function CarGallery() {
@@ -54,6 +54,12 @@ function CarGallery() {
       </GridWrap>
     );
   }
+  return (
+    <GridWrap>
+      <FilterForm carData={adverts} />
+      <p>No matching cars found.</p>
+    </GridWrap>
+  );
 }
 
 export default CarGallery;

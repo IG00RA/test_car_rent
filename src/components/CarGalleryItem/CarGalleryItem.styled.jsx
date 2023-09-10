@@ -15,7 +15,7 @@ export const CarImg = styled.img`
 `;
 
 export const TitleWrap = styled.div`
-  line-height: 24px;
+  line-height: 1.5;
   font-weight: 500;
   display: flex;
   justify-content: space-between;
@@ -32,7 +32,7 @@ export const DataItem = styled.li`
   display: inline-block;
   color: rgba(18, 20, 23, 0.5);
   font-size: 12px;
-  line-height: 150%;
+  line-height: 1.5;
   &:not(:last-child)::after {
     content: '';
     margin-left: 6px;

@@ -8,7 +8,7 @@ export const StyledButton = styled.button`
   white-space: nowrap;
   font-size: 14px;
   font-weight: 600;
-  line-height: 143%;
+  line-height: 1.43;
   transition: background 0.3s ease;
 
   &:hover,

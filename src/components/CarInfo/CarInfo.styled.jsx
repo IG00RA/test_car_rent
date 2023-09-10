@@ -45,7 +45,7 @@ export const ModalTitleWrap = styled.div`
 
 export const ModalTitle = styled.h3`
   font-size: 18px;
-  line-height: 24px;
+  line-height: 1.33;
   font-weight: 500;
 `;
 
@@ -54,7 +54,7 @@ export const ModalDataItem = styled.li`
   display: inline-block;
   color: rgba(18, 20, 23, 0.5);
   font-size: 12px;
-  line-height: 150%;
+  line-height: 1.5;
   &:not(:last-child)::after {
     content: '';
     margin-left: 6px;
@@ -82,13 +82,13 @@ export const ModalStyledModel = styled.span`
 export const DescriptionStyled = styled.p`
   color: #121417;
   font-size: 14px;
-  line-height: 143%;
+  line-height: 1.43;
   margin-bottom: 24px;
 `;
 export const AccessoriesStyled = styled.p`
   color: #121417;
   font-size: 14px;
-  line-height: 143%;
+  line-height: 1.43;
   margin-bottom: 8px;
 `;
 export const ModalConditionsList = styled.ul`
@@ -104,7 +104,7 @@ export const ModalConditionsItem = styled.li`
   background-color: #f9f9f9;
   color: #363535;
   font-size: 12px;
-  line-height: 150%;
+  line-height: 1.5;
   font-family: Montserrat;
   letter-spacing: -0.24px;
 `;

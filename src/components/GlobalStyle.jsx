@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import 'modern-normalize';
+
 const GlobalStyle = createGlobalStyle`
 html {
   box-sizing: border-box;
@@ -56,33 +57,75 @@ img {
   height: auto;
 }
 
-/* .ReactModal__Overlay {
-  opacity: 0;
-  transition: all 100ms ease-in-out;
+.dropdown-wrapper.dropdown-wrapper-brand .Dropdown-control  {
+  width: 224px;
+  height: 48px;
 }
 
-.ReactModal__Overlay--after-open {
-  opacity: 1;
+.dropdown-wrapper .Dropdown-control  {
+  width: 125px;
+  height: 48px;
+  padding: 0 0 0 18px;
+  border-radius: 14px;
+  background-color: #f7f7fb;
+  color: #121417;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.11;
+  border: none;
+      display: flex;
+    align-items: center;
+    cursor: pointer;
 }
 
-.ReactModal__Overlay--before-close {
-  opacity: 0;
-}
-.ReactModal__Content {
-  transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
-  transition: transform 500ms ease-in-out, opacity 300ms ease-in-out; 
-  opacity: 0;
+.dropdown-wrapper .Dropdown-arrow {
+
 }
 
-.ReactModal__Content--after-open {
-  transform: perspective(600px) translate(0px, 0px) rotateX(0);
-  opacity: 1;
+.dropdown-wrapper.dropdown-wrapper-brand .Dropdown-menu {
+width: 224px;
+height: 272px;
 }
 
-.ReactModal__Content--before-close {
-  transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
-  opacity: 0;
-} */
+.dropdown-wrapper .Dropdown-menu {
+  margin-top: 4px;
+ padding: 14px 8px 14px 18px;
+ border-radius: 14px;
+border: 1px solid rgba(18, 20, 23, 0.05);
+background: #FFF;
+box-shadow: 0px 4px 36px 0px rgba(0, 0, 0, 0.02);
+width: 125px;
+height: 188px;
+&::-webkit-scrollbar {
+  width: 8px; 
+  height: 66px;
+   scrollbar-gutter: scrollbar; /* Відображення скролбара незалежно від контенту */
+  scrollbar-width: thin; /* Задаємо ширину скролбара */
+  margin-right: 10px; 
+}
+&::-webkit-scrollbar-thumb {
+  background: rgba(18, 20, 23, 0.05); 
+  border-radius: 10px; 
+}
+
+&::-webkit-scrollbar-track {
+  background: transparent; 
+}
+}
+
+.dropdown-wrapper .Dropdown-option.is-selected {
+color: #121417;
+font-weight: 500;
+line-height: 1.25;
+background-color:white
+}
+.dropdown-wrapper .Dropdown-option {
+color: rgba(18, 20, 23, 0.20);
+font-weight: 500;
+line-height: 1.25;
+background-color:white;
+padding: 0 0 8px 0;
+}
 `;
 
 export default GlobalStyle;
