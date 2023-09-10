@@ -12,6 +12,7 @@ import {
 } from '../CarGallery/CarGallery.styled';
 import CarGalleryItem from '../CarGalleryItem/CarGalleryItem';
 import { getAllAdverts } from '../../redux/adverts/advertsOperations';
+import { NotFoundMessage } from './FavoriteCarGallery.styled';
 
 function FavoriteCarGallery() {
   const [visibleCount, setVisibleCount] = useState(8);
@@ -45,7 +46,7 @@ function FavoriteCarGallery() {
       </GridWrap>
     );
   } else {
-    return <div>No favorite cars found.</div>;
+    return <NotFoundMessage>No favorite cars found.</NotFoundMessage>;
   }
 }
 

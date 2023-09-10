@@ -18,13 +18,11 @@ import 'react-dropdown/style.css';
 function FilterForm({ carData }) {
   const dispatch = useDispatch();
   const filters = useSelector(selectFilters);
-
   const validationSchema = Yup.object().shape({
     carBrand: Yup.string(),
-    from: Yup.number(),
-    to: Yup.number(),
+    from: Yup.string(),
+    to: Yup.string(),
   });
-
   const formik = useFormik({
     initialValues: filters,
     validationSchema,
@@ -69,6 +67,11 @@ function FilterForm({ carData }) {
 
   const defaultPriceOption = 'To $';
   const uniqueCarMakes = [...new Set(carData.map(car => car.make))];
+  const handleReset = () => {
+    formik.resetForm();
+    formik.setFieldValue('price', 5000);
+    formik.handleSubmit();
+  };
   return (
     <StyledForm onSubmit={formik.handleSubmit}>
       <SelectWrap>
@@ -113,7 +116,7 @@ function FilterForm({ carData }) {
             placeholder="From"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            value={formik.values.from || 'From '}
+            value={formik.values.from}
           />
           <StyledInputTo
             type="text"
@@ -122,12 +125,13 @@ function FilterForm({ carData }) {
             placeholder="To"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            value={formik.values.to || 'To '}
+            value={formik.values.to}
           />
         </div>
       </SelectWrap>
 
       <MainButton width={136} text="Search" type="submit" />
+      <MainButton width={136} text="Reset" onClick={handleReset} />
     </StyledForm>
   );
 }

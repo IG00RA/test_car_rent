@@ -75,6 +75,7 @@ export const StyledInputFrom = styled.input`
   background-color: #f7f7fb;
   &:focus {
     border: none;
+    outline: none;
   }
 `;
 
@@ -88,5 +89,6 @@ export const StyledInputTo = styled.input`
   background-color: #f7f7fb;
   &:focus {
     border: none;
+    outline: none;
   }
 `;
