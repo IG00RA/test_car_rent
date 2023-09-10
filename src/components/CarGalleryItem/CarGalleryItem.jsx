@@ -17,6 +17,7 @@ import {
   addFavoriteId,
   removeFavoriteId,
 } from '../../redux/adverts/advertsSlice';
+import { toast } from 'react-hot-toast';
 
 function CarGalleryItem({ data }) {
   const {
@@ -50,8 +51,12 @@ function CarGalleryItem({ data }) {
       onClick={() => {
         if (isFavorite) {
           dispatch(removeFavoriteId(id));
+          toast('Car removed from favorite!', {
+            icon: '🗑️',
+          });
         } else {
           dispatch(addFavoriteId(id));
+          toast.success('Car add to favorite!');
         }
       }}
       style={{
