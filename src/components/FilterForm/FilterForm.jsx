@@ -14,6 +14,7 @@ import {
 } from './FilterForm.styled';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
+import { toast } from 'react-hot-toast';
 
 function FilterForm({ carData }) {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ function FilterForm({ carData }) {
     validationSchema,
     onSubmit: values => {
       dispatch(setFilters(values));
+      toast.success('Filters successfully applied!');
     },
   });
   const handlePriceChange = option => {
@@ -71,6 +73,9 @@ function FilterForm({ carData }) {
     formik.resetForm();
     formik.setFieldValue('price', 5000);
     formik.handleSubmit();
+    toast('Filters reset!', {
+      icon: '🗑️',
+    });
   };
   return (
     <StyledForm onSubmit={formik.handleSubmit}>
@@ -116,16 +121,16 @@ function FilterForm({ carData }) {
             placeholder="From"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            value={formik.values.from}
+            value={formik.values.from || 'From '}
           />
           <StyledInputTo
             type="text"
             id="to"
             name="to"
-            placeholder="To"
+            placeholder="До"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            value={formik.values.to}
+            value={formik.values.to || 'To '}
           />
         </div>
       </SelectWrap>

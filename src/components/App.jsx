@@ -3,6 +3,7 @@ import Home from '../pages/Home/Home';
 import Catalog from '../pages/Catalog';
 import Favorites from '../pages/Favorites';
 import Header from './Header/Header';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/favorites" element={<Favorites />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
+      <Toaster position="top-right" />
     </>
   );
 }
