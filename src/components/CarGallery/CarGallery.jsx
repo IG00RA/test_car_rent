@@ -1,11 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux';
 import CarGalleryItem from '../CarGalleryItem/CarGalleryItem';
-import { selectAdverts } from '../../redux/adverts/advertsSelectors';
+import {
+  selectAdverts,
+  selectIsLoading,
+} from '../../redux/adverts/advertsSelectors';
 import { useEffect, useState } from 'react';
 import { getAllAdverts } from '../../redux/adverts/advertsOperations';
 import { CarItem, Grid, GridWrap, LoadMoreStyled } from './CarGallery.styled';
 import FilterForm from '../FilterForm/FilterForm';
 import { selectFilters } from '../../redux/filters/filtersSelectors';
+import Loader from '../Loader/Loader';
 
 function CarGallery() {
   const dispatch = useDispatch();
@@ -17,8 +21,9 @@ function CarGallery() {
 
   const adverts = useSelector(selectAdverts);
   const filters = useSelector(selectFilters);
+  const isLoading = useSelector(selectIsLoading);
 
-  const filteredAdverts = adverts.filter(advert => {
+  const filteredAdverts = adverts?.filter(advert => {
     const { carBrand, price, from, to } = filters;
     if (
       (carBrand === '' || advert.make === carBrand) &&
@@ -35,8 +40,11 @@ function CarGallery() {
   const handleLoadMore = () => {
     setVisibleCount(prevVisibleCount => prevVisibleCount + 8);
   };
-  if (filteredAdverts.length !== 0) {
-    return (
+  console.log(isLoading);
+  if (filteredAdverts) {
+    return isLoading ? (
+      <Loader />
+    ) : (
       <GridWrap>
         <FilterForm carData={adverts} />
         <Grid>

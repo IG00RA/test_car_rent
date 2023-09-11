@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const HeroStyled = styled.section`
   text-align: center;
-  padding: 80px 0;
+  padding: 175px 0 80px;
 `;
 
 export const HeroTittleStyled = styled.h1`

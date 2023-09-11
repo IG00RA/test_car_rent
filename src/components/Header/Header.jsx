@@ -3,13 +3,17 @@ import {
   HeaderListStyled,
   HeaderStyled,
   HeaderWrapStyled,
+  LogoStyled,
 } from './Header.styled';
+import logo from '../../img/logo.webp';
 
 function Header() {
   return (
     <HeaderStyled>
       <HeaderWrapStyled>
-        <HeaderLinkStyled to="/">Drive Star</HeaderLinkStyled>
+        <HeaderLinkStyled to="/">
+          <LogoStyled src={logo} alt="Drive Star" />
+        </HeaderLinkStyled>
       </HeaderWrapStyled>
 
       <nav>
