@@ -40,7 +40,6 @@ function CarGallery() {
   const handleLoadMore = () => {
     setVisibleCount(prevVisibleCount => prevVisibleCount + 8);
   };
-  console.log(isLoading);
   if (filteredAdverts) {
     return isLoading ? (
       <Loader />

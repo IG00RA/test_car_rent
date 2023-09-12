@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import MainButton from '../Buttons/MainButton';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -6,32 +6,107 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectFilters } from '../../redux/filters/filtersSelectors';
 import { setFilters } from '../../redux/filters/filtersSlice';
 import {
+  MileageWrap,
   SelectWrap,
   StyledForm,
   StyledInputFrom,
   StyledInputTo,
   StyledLabel,
+  StyledSpanFrom,
+  StyledSpanTo,
 } from './FilterForm.styled';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import { toast } from 'react-hot-toast';
 
 function FilterForm({ carData }) {
+  const [canShowToast, setCanShowToast] = useState(true);
+  const showToast = () => {
+    if (canShowToast) {
+      toast.error('From must be less than To');
+      setCanShowToast(false);
+      setTimeout(() => {
+        setCanShowToast(true);
+      }, 5000);
+    }
+  };
   const dispatch = useDispatch();
   const filters = useSelector(selectFilters);
   const validationSchema = Yup.object().shape({
     carBrand: Yup.string(),
-    from: Yup.string(),
+    from: Yup.string().test(
+      'from-to-validation',
+      'From must be less than To',
+      function (value) {
+        const { to } = this.parent;
+        if (value === '' || to === '') {
+          return true;
+        }
+
+        const numericFrom = parseFloat(value?.replace(/[^0-9]/g, ''));
+        const numericTo = parseFloat(to?.replace(/[^0-9]/g, ''));
+
+        if (!isNaN(numericFrom) && !isNaN(numericTo)) {
+          if (numericFrom >= numericTo) {
+            showToast();
+            return false;
+          }
+        }
+
+        return true;
+      }
+    ),
     to: Yup.string(),
   });
+
   const formik = useFormik({
     initialValues: filters,
     validationSchema,
     onSubmit: values => {
+      if (values.price === 'To $') {
+        values.price = '';
+      }
+      if (!(values.from === '')) {
+        const numericFrom = parseFloat(
+          typeof values.from === 'string'
+            ? values.from.replace(/[^0-9]/g, '')
+            : values.from
+        );
+        values.from = numericFrom;
+      }
+      if (!(values.to === '')) {
+        const numericTo = parseFloat(
+          typeof values.to === 'string'
+            ? values.to.replace(/[^0-9]/g, '')
+            : values.to
+        );
+        values.to = numericTo;
+      }
       dispatch(setFilters(values));
       toast.success('Filters successfully applied!');
     },
   });
+  const [isFormDirty, setIsFormDirty] = useState(false);
+  useEffect(() => {
+    if (
+      formik.values.price !== 'To $' ||
+      formik.values.price !== '' ||
+      formik.values.carBrand !== filters.carBrand ||
+      formik.values.from !== filters.from ||
+      formik.values.to !== filters.to
+    ) {
+      setIsFormDirty(formik.dirty || !formik.isValid);
+    }
+  }, [
+    formik.values,
+    formik.dirty,
+    formik.isValid,
+    filters.carBrand,
+    filters.from,
+    filters.to,
+    filters.price,
+  ]);
+
   const handlePriceChange = option => {
     formik.setFieldValue('price', option.value);
   };
@@ -67,11 +142,12 @@ function FilterForm({ carData }) {
     '300',
   ];
 
-  const defaultPriceOption = 'To $';
   const uniqueCarMakes = [...new Set(carData.map(car => car.make))];
   const handleReset = () => {
     formik.resetForm();
-    formik.setFieldValue('price', 5000);
+    formik.setFieldValue('price', '');
+    formik.setFieldValue('from', '');
+    formik.setFieldValue('to', '');
     formik.handleSubmit();
     toast('Filters reset!', {
       icon: '🗑️',
@@ -100,42 +176,109 @@ function FilterForm({ carData }) {
         <StyledLabel htmlFor="price">Price/1 hour:</StyledLabel>
         <div className="dropdown-wrapper">
           <Dropdown
+            key={formik.values.price}
             options={priceOptions.map(option => ({
               value: option,
               label: option,
             }))}
             onChange={handlePriceChange}
-            value={defaultPriceOption}
-            placeholder="Select an option"
+            value={formik.values.price}
+            placeholder="To $"
           />
         </div>
       </SelectWrap>
 
       <SelectWrap>
         <StyledLabel htmlFor="mileage">Car mileage / km:</StyledLabel>
-        <div>
+        <MileageWrap>
+          <StyledSpanFrom
+            onClick={() => {
+              const inputElement = document.getElementById('from');
+              if (inputElement) {
+                inputElement.focus();
+              }
+            }}
+          >
+            From
+          </StyledSpanFrom>
           <StyledInputFrom
             type="text"
             id="from"
             name="from"
-            placeholder="From"
-            onChange={formik.handleChange}
+            onChange={e => {
+              const { name, value } = e.target;
+              let numericValue = parseFloat(value.replace(/[^0-9]/g, ''));
+              if (value === '') {
+                numericValue = '';
+              }
+
+              if (numericValue === '' || !isNaN(numericValue)) {
+                const formattedValue =
+                  numericValue === '' ? '' : numericValue.toLocaleString();
+                formik.handleChange({
+                  ...e,
+                  target: { name, value: formattedValue },
+                });
+              } else {
+                formik.setFieldValue(name, formik.values[name] || '');
+              }
+            }}
             onBlur={formik.handleBlur}
-            value={formik.values.from || 'From '}
+            value={
+              formik.values.from.toLocaleString() === ''
+                ? ''
+                : formik.values.from.toLocaleString()
+            }
           />
+
+          <StyledSpanTo
+            onClick={() => {
+              const inputElement = document.getElementById('to');
+              if (inputElement) {
+                inputElement.focus();
+              }
+            }}
+          >
+            To
+          </StyledSpanTo>
           <StyledInputTo
             type="text"
             id="to"
             name="to"
-            placeholder="До"
-            onChange={formik.handleChange}
+            onChange={e => {
+              const { name, value } = e.target;
+              let numericValue = parseFloat(value.replace(/[^0-9]/g, ''));
+              if (value === '') {
+                numericValue = '';
+              }
+
+              if (numericValue === '' || !isNaN(numericValue)) {
+                const formattedValue =
+                  numericValue === '' ? '' : numericValue.toLocaleString();
+                formik.handleChange({
+                  ...e,
+                  target: { name, value: formattedValue },
+                });
+              } else {
+                formik.setFieldValue(name, formik.values[name] || '');
+              }
+            }}
             onBlur={formik.handleBlur}
-            value={formik.values.to || 'To '}
+            value={
+              formik.values.to.toLocaleString() === ''
+                ? ''
+                : formik.values.to.toLocaleString()
+            }
           />
-        </div>
+        </MileageWrap>
       </SelectWrap>
 
-      <MainButton width={136} text="Search" type="submit" />
+      <MainButton
+        width={136}
+        text="Search"
+        type="submit"
+        disabled={!isFormDirty}
+      />
       <MainButton width={136} text="Reset" onClick={handleReset} />
     </StyledForm>
   );

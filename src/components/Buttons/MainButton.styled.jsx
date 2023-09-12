@@ -15,4 +15,8 @@ export const StyledButton = styled.button`
   &:focus {
     background: #0b44cd;
   }
+  &:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
 `;

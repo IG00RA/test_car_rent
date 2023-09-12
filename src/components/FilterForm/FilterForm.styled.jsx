@@ -12,6 +12,7 @@ export const SelectWrap = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  color: #121417;
 `;
 
 export const StyledSelectBrand = styled.select`
@@ -68,11 +69,14 @@ export const StyledLabel = styled.label`
 export const StyledInputFrom = styled.input`
   width: 160px;
   height: 48px;
-  padding-left: 24px;
+  padding-left: 69px;
   border: none;
   border-radius: 14px 0px 0px 14px;
   border-right: 1px solid rgba(138, 138, 137, 0.2);
   background-color: #f7f7fb;
+  font-size: 18px;
+  font-weight: 500;
+
   &:focus {
     border: none;
     outline: none;
@@ -82,13 +86,35 @@ export const StyledInputFrom = styled.input`
 export const StyledInputTo = styled.input`
   width: 160px;
   height: 48px;
-  padding-left: 24px;
+  padding-left: 48px;
   border: none;
   border-radius: 0px 14px 14px 0px;
   border-left: 1px solid rgba(138, 138, 137, 0.2);
   background-color: #f7f7fb;
+  font-size: 18px;
+  font-weight: 500;
   &:focus {
     border: none;
     outline: none;
   }
+`;
+
+export const StyledSpanFrom = styled.span`
+  top: 13px;
+  left: 24px;
+  font-size: 18px;
+  font-weight: 500;
+  position: absolute;
+`;
+
+export const StyledSpanTo = styled.span`
+  top: 13px;
+  left: 184px;
+  font-size: 18px;
+  font-weight: 500;
+  position: absolute;
+`;
+
+export const MileageWrap = styled.div`
+  position: relative;
 `;
