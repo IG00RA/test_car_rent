@@ -13,6 +13,8 @@ import {
 import CarGalleryItem from '../CarGalleryItem/CarGalleryItem';
 import { getAllAdverts } from '../../redux/adverts/advertsOperations';
 import { NotFoundMessage } from './FavoriteCarGallery.styled';
+import MainButton from '../Buttons/MainButton';
+import { Link } from 'react-router-dom';
 
 function FavoriteCarGallery() {
   const [visibleCount, setVisibleCount] = useState(8);
@@ -46,7 +48,14 @@ function FavoriteCarGallery() {
       </GridWrap>
     );
   } else {
-    return <NotFoundMessage>No favorite cars found.</NotFoundMessage>;
+    return (
+      <NotFoundMessage>
+        <span>No favorite cars found.</span>
+        <Link to="/catalog">
+          <MainButton width={280} text="Rent a CAR" />
+        </Link>
+      </NotFoundMessage>
+    );
   }
 }
 

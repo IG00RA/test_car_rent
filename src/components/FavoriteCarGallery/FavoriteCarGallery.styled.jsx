@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const NotFoundMessage = styled.div`
   display: flex;
+  flex-direction: column;
+  gap: 30px;
   justify-content: center;
   align-items: center;
   min-height: 500px;

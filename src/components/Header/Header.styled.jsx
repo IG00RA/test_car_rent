@@ -12,7 +12,7 @@ export const HeaderStyled = styled.header`
   border-bottom-right-radius: 15px;
   position: fixed;
   z-index: 1;
-  width: 100%;
+  width: 1440px;
   height: 95px;
 `;
 

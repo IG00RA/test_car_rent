@@ -17,7 +17,7 @@ export const CarItem = styled.li`
 `;
 
 export const GridWrap = styled.div`
-  width: 1440px;
+  width: 100%;
   padding: 245px 128px;
   margin: 0px auto;
   display: flex;

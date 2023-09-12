@@ -16,17 +16,17 @@ export const FeaturedStyled = styled.section`
 
 export const FeaturedTittleStyled = styled.h2`
   font-size: 28px;
-  color: #3470ff;
+  color: #121417;
   margin-bottom: 20px;
 `;
 
-export const FeaturedWrap = styled.div`
-  background-color: white;
-  padding: 20px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  margin: 20px;
-`;
+// export const FeaturedWrap = styled.div`
+//   background-color: white;
+//   padding: 20px;
+//   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+//   border-radius: 10px;
+//   margin: 20px;
+// `;
 export const FeaturedCarTittleStyled = styled.h3`
   font-size: 20px;
   color: #333;
@@ -82,4 +82,8 @@ export const FooterLinkStyled = styled.a`
   &:hover {
     color: #afc6fe;
   }
+`;
+export const FeaturedWrap = styled.div`
+  display: flex;
+  justify-content: center;
 `;
