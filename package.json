@@ -2,7 +2,7 @@
   "name": "test_car_rent",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ig00ra.github.io/test_car_rent",
+  "homepage": "https://drive-star.vercel.app/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.17.0",
